@@ -3,7 +3,6 @@ import Footer from "./Footer"
 import {useState, useEffect} from "react"
 import styled from "styled-components"
 import axios from "axios"
-import Logo from "../../assets/Logo.png"
 
 import "./Style.css"
 
@@ -32,7 +31,7 @@ export default function Home(){
        
         <div className="Container Home">
                 <header className="TopBar">    
-                       
+                       <h1>Logo Em Construção</h1>
                 </header>
                <Main>
                     <ul className="Category">

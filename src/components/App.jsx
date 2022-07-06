@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from 'styled-components';
 import Login from './Login';
 import SignUp from './SignUp';
-import styled from 'styled-components';
 import Home from "./Home/Home";
+import Success from "./Success";
 
 export default function App() {
     return (
@@ -10,8 +11,14 @@ export default function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />
-                    <Route path="/sign" element={<SignUp />} />
-                    <Route path="/home" element={<Home />}/>
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/home" element={<Home />}/>              
+                    {/*
+                    <Route path="/game/id" element={<Game />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/orders" element={<Orders />} /> */}
+                    <Route path="/success" element={<Success />} />
                 </Routes>
             </BrowserRouter>
         </Container>
