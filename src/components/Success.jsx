@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../assets/images/logo3.png";
+import logo from "../assets/images/logo.png";
 
 export default function Success() {
   return (
@@ -10,10 +10,10 @@ export default function Success() {
         Parabéns!<br></br> O seu pedido foi aceito!
       </h3>
       <Link to="/home">
-        <button>Continuar comprando </button>
+        <span> {">>"} Continuar comprando </span>
       </Link>
-      <Link to="/orders">
-        <button className="ViewOrders">Ver meus pedidos </button>
+      <Link to="/orders" className="viewOrders">
+        <span> {">>"} Ver meus pedidos </span>
       </Link>
     </Container>
   );
@@ -22,7 +22,7 @@ export default function Success() {
 const Container = styled.main`
   width: 100vw;
   height: 100vh;
-  background-color: #151515;
+  background-color: #000000;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -32,30 +32,32 @@ const Container = styled.main`
   h3 {
     color: #ffffff;
     text-align: center;
-    font-family: "Inria Sans", sans-serif;
-    font-size: 20px;
+    font-family: "Goldman", cursive;
+    font-size: 25px;
   }
 
   img {
-    width: 200px;
+    width: 450px;
   }
 
-  button {
-    width: 247px;
-    height: 52px;
-    background: linear-gradient(233deg, #ff1010 -27%, #8a0000 173%);
-    border-radius: 0px 14px;
-    border: none;
+  span {
     font-family: "Goldman", cursive;
-    color: #ffffff;
-    font-size: 16px;
-    margin: 50px 0 10px 0;
+    color: #dfff1e;
+    font-size: 18px;
     cursor: pointer;
   }
 
-  .ViewOrders {
-    margin: 10px 0 10px 0;
-    background: linear-gradient(233deg, #f8dada -27%, #d87e7e 173%);
-    color: #ff1010;
+  a {
+    text-decoration: none;
+    margin: 50px 0 10px 0;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: #dfff1e;
+    }
+  }
+
+  .viewOrders {
+    margin: 5px 0 10px 0;
   }
 `;
