@@ -22,7 +22,6 @@ export default function Success() {
 const Container = styled.main`
   width: 100vw;
   height: 100vh;
-  /* background-color: #0a000b; */
   background-color: #151515;
   display: flex;
   align-items: center;
@@ -32,16 +31,13 @@ const Container = styled.main`
 
   h3 {
     color: #ffffff;
-    /* font-family: "Goldman", cursive; */
     text-align: center;
     font-family: "Inria Sans", sans-serif;
     font-size: 20px;
   }
 
   img {
-    /* height: 130px; */
     width: 200px;
-    /* margin-top: 50px; */
   }
 
   button {
@@ -59,7 +55,7 @@ const Container = styled.main`
 
   .ViewOrders {
     margin: 10px 0 10px 0;
-    background: linear-gradient(233deg, #f8dada -27%, #d45b5b 173%);
+    background: linear-gradient(233deg, #f8dada -27%, #d87e7e 173%);
     color: #ff1010;
   }
 `;
