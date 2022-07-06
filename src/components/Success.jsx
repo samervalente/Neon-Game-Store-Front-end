@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo3.png";
 
 export default function Success() {
   return (
@@ -22,7 +22,8 @@ export default function Success() {
 const Container = styled.main`
   width: 100vw;
   height: 100vh;
-  background-color: #0a000b;
+  /* background-color: #0a000b; */
+  background-color: #151515;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -39,7 +40,7 @@ const Container = styled.main`
 
   img {
     /* height: 130px; */
-    width: 530px;
+    width: 200px;
     /* margin-top: 50px; */
   }
 
