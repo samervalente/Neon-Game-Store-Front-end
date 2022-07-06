@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './Login';
 import SignUp from './SignUp';
 import styled from 'styled-components';
+import Home from "./Home/Home";
 
 export default function App() {
     return (
@@ -10,6 +11,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/sign" element={<SignUp />} />
+                    <Route path="/home" element={<Home />}/>
                 </Routes>
             </BrowserRouter>
         </Container>

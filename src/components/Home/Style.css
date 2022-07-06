@@ -1,0 +1,120 @@
+
+.Container.Home{
+    background-color: #151515;
+    width: 100vw;
+    height:100vh;
+    color:white;
+    font-family: 'Inria Sans';
+}
+
+.TopBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+}
+
+
+.Logo{
+    width: 350px;
+    height: 200px;
+  
+}
+
+.Category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100% ;
+    color:white;
+    font-size:18px;
+}
+
+.Category li {
+    margin: 0px 5px;
+}
+
+.GamesSection{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;  
+}
+.gameSection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.gameSection:nth-last-child(2), .gameSection:last-child{
+    margin-bottom: 120px;
+}
+
+.gameSection .name{
+    font-family: 'Goldman';
+    font-size:15px;
+    position:absolute;
+    bottom:100px;
+    left:60px;
+    width: 100px;
+}
+
+.gameSection .price{
+   font-family: 'Goldman';
+    font-size:14px;
+    position:absolute;
+    bottom:80px;
+    left:60px;
+    color:#FBFF49;
+}
+
+.gameImage{
+    width: 230px;
+    height:260px;
+    
+}
+
+.addcart{
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: black;
+    box-shadow: 2px 3px  gray;
+}
+
+
+.Menu{
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(35px);
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   
+    font-size:16px;
+}
+
+footer div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: red;
+    width: 40px;
+}
+
+
+
+.Container.Home ion-icon{
+    margin-bottom: 8px;
+    font-size: 25px;
+}
