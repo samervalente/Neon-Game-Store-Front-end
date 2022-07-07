@@ -1,30 +1,36 @@
-
-import Footer from "./Footer"
 import {useState, useEffect} from "react"
+import {Link, useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
-
+import Footer from "./Footer"
 import "./Style.css"
 
-export default function Home(){
+export default function Home({setGameChoice}){
     const [games, setGames] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function FetchData(){
-            const {data} = await axios.get("http://localhost:5000/games")
+            const {data} = await axios.get("https://neon-game-store-back.herokuapp.com/games")
             setGames(data)
         }
         FetchData()
     }, [])
 
+    function choiceGame(id, game){
+        setGameChoice(game)
+        navigate(`/game/${id}`)
+    }
+
 
     const gameComponent = games.map(game => {
-        return <div className="gameSection">
+        return <div key={game._id} className="gameSection" onClick={() => choiceGame(game._id, game)}>
             <img className="gameImage" src={game.imageURL}/>
             <p className="name">{game.name}</p>
             <p className="price">{game.price.toFixed(2)}</p>
             <div className="addcart">Add to Cart</div>
         </div>
+        
     })
 
     return (
