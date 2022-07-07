@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import Footer from "../shared/Footer"
 
 export default function Game(){
     const [game, setGame] = useState({})
@@ -15,7 +16,10 @@ export default function Game(){
 
 
     return (
-        <p>Olá, eu sou o game {game.name}</p>
+        <>
+            <p>Olá, eu sou o game {game.name}</p>
+            <Footer />
+        </>
     )
 }
 
