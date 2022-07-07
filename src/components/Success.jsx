@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../assets/images/logo.png";
+import logosuccess from "../assets/images/logosuccess.png";
 
 export default function Success() {
   return (
     <Container>
-      <img src={logo} alt="logso" />
+      <img src={logosuccess} alt="logso" />
       <h3>
         Parabéns!<br></br> O seu pedido foi aceito!
       </h3>
