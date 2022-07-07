@@ -22,7 +22,7 @@ export default function Cart() {
 
       try {
         const { data } = await axios.get(
-          "https://neon-game-store-back.herokuapp.com/games"
+          "https://neon-game-store-back.herokuapp.com/cart"
           // config
         );
 
@@ -134,7 +134,7 @@ export default function Cart() {
 
     // try {
     //   await axios.post("https://neon-game-store-back.herokuapp.com/checkout", body, config);
-      // navigate("/checkout");
+    // navigate("/checkout");
     // } catch (error) {
     //   const message = error.response.statusText;
     //   alert(message);
