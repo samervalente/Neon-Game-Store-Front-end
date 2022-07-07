@@ -3,9 +3,13 @@ import {useState} from 'react'
 import styled from 'styled-components';
 import Login from './Login';
 import SignUp from './SignUp';
-import Home from "./Home/Home";
-import Game from "./Game/Game"
+import Profile from "./Profile"
+import Cart from "./Cart"
+import Home from "./Home";
+import Game from "./Game"
+import Checkout from "./Checkout"
 import Success from "./Success";
+import Orders from "./Orders"
 
 
 export default function App() {
@@ -13,18 +17,16 @@ export default function App() {
 
     return (
         <Container>
-       
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
-                    <Route path="/home"   element={<Home setGameChoice={setGameChoice}/>}/> 
-                    <Route path="/game/:id"  element={<Game gameChoice={gameChoice} />} />  
-                               
-                    {/*              
+                    <Route path="/profile" element={<Profile />}/>
+                    <Route path="/home"   element={<Home />}/> 
+                    <Route path="/game/:id"  element={<Game />} />                      
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/orders" element={<Orders />} /> */}
+                    <Route path="/orders" element={<Orders />} /> 
                     <Route path="/success" element={<Success />} />
                 </Routes>
             </BrowserRouter>

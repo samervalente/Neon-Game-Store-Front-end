@@ -1,11 +1,11 @@
 import {useState, useEffect} from "react"
-import {Link, useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
-import Footer from "./Footer"
-import "./Style.css"
+import Footer from "../shared/Footer"
+import "../assets/styles/Home.css"
 
-export default function Home({setGameChoice}){
+export default function Home(){
     const [games, setGames] = useState([])
     const navigate = useNavigate()
 
@@ -17,24 +17,20 @@ export default function Home({setGameChoice}){
         FetchData()
     }, [])
 
-    function choiceGame(id, game){
-        setGameChoice(game)
+    function choiceGame(id){
         navigate(`/game/${id}`)
     }
 
-
     const gameComponent = games.map(game => {
-        return <div key={game._id} className="gameSection" onClick={() => choiceGame(game._id, game)}>
+        return <div key={game._id} className="gameSection" onClick={() => choiceGame(game._id)}>
             <img className="gameImage" src={game.imageURL}/>
             <p className="name">{game.name}</p>
             <p className="price">{game.price.toFixed(2)}</p>
-            <div className="addcart">Add to Cart</div>
-        </div>
-        
+            <div className="addcart">Adicionar ao carrino</div>
+        </div> 
     })
 
     return (
-       
         <div className="Container Home">
                 <header className="TopBar">    
                        <h1>Logo Em Construção</h1>
