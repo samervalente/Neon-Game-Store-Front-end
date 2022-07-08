@@ -39,7 +39,7 @@ export default function Footer() {
 }
 
 const ContainerFooter = styled.div`
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(35px);
   position: fixed;
   bottom: 0;
