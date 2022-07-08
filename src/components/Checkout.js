@@ -169,7 +169,7 @@ export default function Checkout() {
 
     try {
       await axios.post(
-        "https://neon-game-store-back.herokuapp.com/checkout",
+        "https://neon-game-store-back.herokuapp.com/orders",
         body,
         config
       );
