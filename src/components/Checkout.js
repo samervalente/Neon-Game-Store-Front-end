@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
@@ -20,6 +21,7 @@ export default function Checkout() {
   const [cpf, setCpf] = useState([]);
   const [payment, setPayment] = useState([]);
   const date = dayjs().format("DD/MM/YYYY");
+
 
   useEffect(() => {
     async function GetOrder() {
@@ -58,6 +60,7 @@ export default function Checkout() {
       const { name, price, imageURL, _id } = product;
       return (
         <>
+
           <Product key={index}>
             <Info>
               <Link to={`game/${_id}`}>
