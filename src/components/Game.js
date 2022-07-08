@@ -7,16 +7,19 @@ import Footer from "../shared/Footer"
 export default function Game() {
   const [game, setGame] = useState({});
   const { id } = useParams();
+  
+
   useEffect(() => {
       axios.get(`https://neon-game-store-back.herokuapp.com/game/${id}`)
       .then((response) => {
         setGame(response.data);
       })
-  }, [id]);
-  console.log(game)
+  }, []);
+    
     return (
         <Container>
             <p>Olá, eu sou o game {game.name}</p>
+            <img src={"#"}/>
             <button>Comprar</button>
             <button className="addcart">Adicionar ao carrinho</button>
             <Footer />
