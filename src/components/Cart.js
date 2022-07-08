@@ -130,6 +130,7 @@ export default function Cart() {
     };
     console.log(total);
     const body = {
+      products: [...productsCart],
       total: parseFloat(total),
     };
 
