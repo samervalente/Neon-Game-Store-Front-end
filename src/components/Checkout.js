@@ -6,6 +6,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { IoBagCheckOutline } from "react-icons/io5";
 import Collapsible from "react-collapsible";
+import { TailSpin } from "react-loader-spinner";
 import dayjs from "dayjs";
 import Footer from "../shared/Footer.js";
 
@@ -14,11 +15,10 @@ export default function Checkout() {
   const { user } = useContext(UserContext);
   const { name, token } = user;
   const [order, setOrder] = useState([]);
-  const { total, products } = order;
   const [phone, setPhone] = useState([]);
   const [address, setAddress] = useState([]);
   const [cpf, setCpf] = useState([]);
-  const [payment, setPayment] = useState([]);
+  const [payment, setPayment] = useState("");
   const date = dayjs().format("DD/MM/YYYY");
 
   useEffect(() => {
@@ -30,11 +30,11 @@ export default function Checkout() {
       };
 
       try {
-        const { data } = await axios.get(
+        const response = await axios.get(
           "https://neon-game-store-back.herokuapp.com/checkout"
         );
 
-        setOrder(data);
+        setOrder(response.data);
       } catch (error) {
         const message = error.response.statusText;
         alert(message);
@@ -43,18 +43,20 @@ export default function Checkout() {
     GetOrder();
   }, []);
 
-  function RenderProducts() {
-    if (order.length === 0) {
-      return (
-        <div>
-          {/* <p>
-            Não há produtos <br></br> em seu carrinho
-          </p> */}
-        </div>
-      );
-    }
+  if (order.length === 0) {
+    return (
+      <TailSpin
+        color="#ffab2d"
+        text-align="center"
+        ariaLabel="loading-indicator"
+      />
+    );
+  }
 
-    return products.map((product, index) => {
+  function RenderProducts() {
+    console.log(order);
+
+    return order[0].products.map((product, index) => {
       const { name, price, imageURL, _id } = product;
       return (
         <>
@@ -79,14 +81,13 @@ export default function Checkout() {
       <>
         <Total>
           <span>TOTAL</span>
-          <span>${total}</span>
+          <span>${order[0].total}</span>
         </Total>
       </>
     );
   }
 
   function RenderCustomerData() {
-    console.log(payment);
     return (
       <>
         <input
@@ -156,6 +157,7 @@ export default function Checkout() {
         Authorization: `Bearer ${token}`,
       },
     };
+    const { total, products } = order[0];
     console.log(total);
     const body = {
       name,
@@ -252,7 +254,7 @@ const Container = styled.main`
   overflow-x: hidden;
   justify-content: "flex-start";
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 110px;
   padding: 15px;
   overflow-y: hidden;
 
