@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  
+
+
   return (
     <ContainerFooter>
        <Link to="/home">
@@ -45,18 +48,18 @@ const ContainerFooter = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 110px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 16px;
+  font-size: 12px;
 
   div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 16px;
     color: white;
   }
 

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
@@ -9,6 +10,7 @@ import Collapsible from "react-collapsible";
 import { TailSpin } from "react-loader-spinner";
 import dayjs from "dayjs";
 import Footer from "../shared/Footer.js";
+import Confirm from "../shared/NeonButton";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ export default function Checkout() {
   const [cpf, setCpf] = useState([]);
   const [payment, setPayment] = useState("");
   const date = dayjs().format("DD/MM/YYYY");
+
 
   useEffect(() => {
     async function GetOrder() {
@@ -60,6 +63,7 @@ export default function Checkout() {
       const { name, price, imageURL, _id } = product;
       return (
         <>
+
           <Product key={index}>
             <Info>
               <Link to={`game/${_id}`}>
@@ -404,55 +408,3 @@ const RadioGroup = styled.div`
   }
 `;
 
-const Confirm = styled.div`
-  font-family: "Goldman";
-  text-decoration: none;
-  display: inline-block;
-  padding: 10px;
-  border: 4px solid #ffab2d;
-  border-radius: 0px 8px 0px 8px;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #ffab2d;
-  box-shadow: inset 0 0 20px #ffab2d, 0 0 20px #ffab2d;
-  position: relative;
-
-  &:before {
-    pointer-events: none;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #ffab2d;
-    left: 0;
-    top: 120%;
-
-    transform: perspective(64px) rotateX(40deg) scale(1, 0.35);
-    filter: blur(64px);
-    opacity: 0.7;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ffab2d;
-    box-shadow: 0 0 128px 32px #ffab2d;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 100ms linear;
-  }
-  &:hover::after,
-  &:focus::after {
-    opacity: 1;
-  }
-
-  &:hover,
-  &:focus {
-    color: #202631;
-    text-shadow: none;
-  }
-
-  cursor: pointer;
-`;
