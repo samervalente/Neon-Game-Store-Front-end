@@ -1,29 +1,29 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-// import UserContext from "../context/UserContext";
+import UserContext from "../context/UserContext";
 import axios from "axios";
 import styled from "styled-components";
 import { IoCartOutline, IoCloseCircleSharp } from "react-icons/io5";
+import Footer from "../shared/Footer.js";
 
 export default function Cart() {
   const navigate = useNavigate();
-  // const { user } = useContext(UserContext);
-  // const { name, token } = user;
+  const { user } = useContext(UserContext);
+  const { name, token } = user;
   const [productsCart, setProductsCart] = useState([]);
 
   useEffect(() => {
     async function GetProductsCart() {
-      // const config = {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
       try {
         const { data } = await axios.get(
           "https://neon-game-store-back.herokuapp.com/cart"
-          // config
         );
 
         setProductsCart(data);
@@ -52,15 +52,18 @@ export default function Cart() {
       return (
         <>
           <Product key={index}>
-            <Link to={`game/${_id}`}>
-              <img src={imageURL} alt="product" />
-            </Link>
-            <span> {name} </span>
-
-            <span>${price} </span>
-            <i onClick={() => Delete(_id)}>
-              <IoCloseCircleSharp />
-            </i>
+            <Info>
+              <Link to={`game/${_id}`}>
+                <img src={imageURL} alt="product" />
+              </Link>
+              <span> {name} </span>
+            </Info>
+            <Info>
+              <span>${price} </span>
+              <i onClick={() => Delete(_id)}>
+                <IoCloseCircleSharp />
+              </i>
+            </Info>
           </Product>
         </>
       );
@@ -82,7 +85,7 @@ export default function Cart() {
         <>
           <Total total={total}>
             <span>SALDO</span>
-            <span>{total}</span>
+            <span>${total}</span>
           </Total>
           <button onClick={() => SubmitCheckout(total)}>Continuar</button>
         </>
@@ -91,14 +94,12 @@ export default function Cart() {
   }
 
   async function Delete(_id) {
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // };
-    const body = {
-      _id,
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     };
+
     let confirmAlert = window.confirm(
       "Você tem certeza que quer remover esse produto do carrinho?"
     );
@@ -107,38 +108,42 @@ export default function Cart() {
       return;
     }
 
-    // try {
-    //   const {data} = await axios.delete(
-    //     "https://neon-game-store-back.herokuapp.com/cart",
-    //     body,
-    //     config
-    //   );
-
-    //   setProductsCart(data);
-    // } catch (error) {
-    //   const message = error.response.statusText;
-    //   alert(message);
-    // }
+    try {
+      const { data } = await axios.delete(
+        `https://neon-game-store-back.herokuapp.com/cart/${_id}`,
+        // body,
+        config
+      );
+      console.log(data);
+      setProductsCart(data);
+    } catch (error) {
+      const message = error.response.statusText;
+      alert(message);
+    }
   }
 
   async function SubmitCheckout(total) {
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     console.log(total);
-    // const body = {
-    //   total: parseFloat(total)
-    // };
+    const body = {
+      total: parseFloat(total),
+    };
 
-    // try {
-    //   await axios.post("https://neon-game-store-back.herokuapp.com/checkout", body, config);
-    // navigate("/checkout");
-    // } catch (error) {
-    //   const message = error.response.statusText;
-    //   alert(message);
-    // }
+    try {
+      await axios.post(
+        "https://neon-game-store-back.herokuapp.com/checkout",
+        body,
+        config
+      );
+      navigate("/checkout");
+    } catch (error) {
+      const message = error.response.statusText;
+      alert(message);
+    }
   }
 
   return (
@@ -150,17 +155,17 @@ export default function Cart() {
         </i>
       </Header>
       <Container productsCart={productsCart}>
-        {RenderProducts()}
+        <Products>{RenderProducts()}</Products>
         {RenderTotal()}
       </Container>
+      <Footer />
     </>
   );
 }
 
 const Container = styled.main`
   width: 100vw;
-  height: 100%;
-  background-color: #000000;
+  min-height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -169,13 +174,14 @@ const Container = styled.main`
     props.productsCart.length === 0 ? "center" : "flex-start"};
   margin-top: 50px;
   padding: 15px;
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   p {
     font-family: "Inria Sans", sans-serif;
     color: #d8d4d4;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
+    margin-bottom: 130px;
   }
 
   button {
@@ -187,13 +193,14 @@ const Container = styled.main`
     color: #ffffff;
     font-family: "Goldman", cursive;
     font-size: 18px;
-    margin-top: 40px;
     cursor: pointer;
+    position: fixed;
+    bottom: 120px;
   }
 `;
 
 const Header = styled.div`
-  background-color: #000000;
+  background-color: #151515;
   color: #dfff1e;
   width: 100%;
   height: 50px;
@@ -207,12 +214,20 @@ const Header = styled.div`
 
   span {
     font-family: "Goldman", cursive;
-    font-size: 16px;
+    font-size: 20px;
   }
 
   i {
-    font-size: 22px;
+    font-size: 27px;
   }
+`;
+
+const Products = styled.div`
+  width: 100%;
+  height: calc((100vh - 280px));
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 `;
 
 const Product = styled.div`
@@ -227,8 +242,6 @@ const Product = styled.div`
     font-family: "Inria Sans", sans-serif;
     font-size: 16px;
     margin-bottom: 70px;
-    margin-right: 5px;
-    /* margin-left: 55px; */
     color: #ffffff;
   }
 
@@ -251,19 +264,28 @@ const Product = styled.div`
   }
 `;
 
+const Info = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
 const Total = styled.div`
   color: #dfff1e;
+  background-color: #151515;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  bottom: 200px;
+  padding: 15px;
 
   span {
     color: #ffffff;
     font-weight: 700;
     font-family: "Inria Sans", sans-serif;
     font-size: 18px;
-    margin-left: 20px;
   }
 
   span:nth-child(2) {

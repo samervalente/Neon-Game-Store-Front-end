@@ -1,10 +1,9 @@
+/*Este é um arquivo temporário pois irá ser transformado em styled compoennts */
 
 .Container.Home{
     background-color: #151515;
     width: 100vw;
-    height:100vh;
-    color:white;
-    font-family: 'Inria Sans';
+    height:100vh; 
 }
 
 .TopBar{
@@ -50,6 +49,7 @@
 
 .gameSection:nth-last-child(2), .gameSection:last-child{
     margin-bottom: 120px;
+    
 }
 
 .gameSection .name{
@@ -73,7 +73,6 @@
 .gameImage{
     width: 230px;
     height:260px;
-    
 }
 
 .addcart{
@@ -89,31 +88,3 @@
 }
 
 
-.Menu{
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(35px);
-    position: fixed;
-    bottom: 0;
-    left:0;
-    width: 100%;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-   
-    font-size:16px;
-}
-
-footer div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: red;
-    width: 40px;
-}
-
-
-.Container.Home ion-icon{
-    margin-bottom: 8px;
-    font-size: 25px;
-}
