@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import styled from "styled-components"
 import Footer from "../shared/Footer"
 
@@ -9,15 +9,14 @@ export default function Game() {
   const { id } = useParams();
 
 
-  useEffect(() => {
     async function FetchData(){
-      const {data} = await  axios.get(`https://neon-game-store-back.herokuapp.com/game/${id}`)
+      const {data} = await axios.get(`https://neon-game-store-back.herokuapp.com/game/${id}`)
       setGame(data)
+      
     }  
-    
-    FetchData()
-  }, []);
 
+    useEffect(FetchData, [])
+    console.log(game.platforms)
   
     return (
         <Container>
@@ -31,9 +30,14 @@ export default function Game() {
                   <h3>Sobre o jogo</h3>
               <p className="description">{game.description}</p>
             </div>
-            <div className="actions">
-            <button>Compre Agora</button>
+            <div className="footer">
+              <div className="actions">
+                <Link to="/checkout">
+                  <button className="comprar">Compre Agora</button>
+                </Link>
                 <p className="price">R$ {game.price},00</p>
+              </div>
+              <button>Adicionar ao carrinho</button>
             </div>
             
             <Footer />
@@ -63,8 +67,8 @@ background: linear-gradient(180deg, rgba(199,8,1,1) 0%, rgba(0,0,0,1) 40%);
     .description{
       text-align: justify;
       font-family: 'Inria Sans';
-      font-size:16px;
-     line-height: 22px;
+      font-size:18px;
+      
   }
 }
 
@@ -73,32 +77,46 @@ background: linear-gradient(180deg, rgba(199,8,1,1) 0%, rgba(0,0,0,1) 40%);
     margin:10px 0px;
   }
 
+  .footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top:10px;
+
+  }
+
   .actions{
    display: flex;
-   justify-content: center;
    align-items: center;
-   margin-top:40px;
-   width: 70%;
+   width: 100%;
 
    .price{
     color:#DFFF1E;
-    margin-left:10px;
     font-size:20px;
+    margin-left:10px;
    }
   }
 
+  
   button{
     background: linear-gradient(180deg, rgba(255,16,16,1) 0%, rgba(138,0,0,1) 100%);
     color:white;
     font-family: 'Goldman';
     border-radius: 5px;
     text-align: none;
+    width: 50%;
     border: none;
-    height: 40px;
-    font-size:20px;
+    padding:10px;
+    margin-top:10px;
+    font-size:1em;
+
+ 
+
    
+
   }
 
+ 
 
   
 
