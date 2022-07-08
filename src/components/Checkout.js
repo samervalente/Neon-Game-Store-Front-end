@@ -193,6 +193,26 @@ export default function Checkout() {
         // body,
         config
       );
+      DeleteCheckout();
+    } catch (error) {
+      const message = error.response.statusText;
+      alert(message);
+    }
+  }
+
+  async function DeleteCheckout() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      await axios.delete(
+        `https://neon-game-store-back.herokuapp.com/checkout`,
+        // body,
+        config
+      );
       navigate("/success");
     } catch (error) {
       const message = error.response.statusText;
