@@ -21,7 +21,7 @@ export default function Game() {
     return (
         <Container>
             <div className="section">
-              <img className="imagesolo" src={game.soloURL}/>
+              <img className="imagesolo" src={game.soloURL} alt="imglogo"/>
             </div>
             <div className="infos">
                   <h2 className="gamename">{game.name}</h2>
