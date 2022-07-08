@@ -164,7 +164,7 @@ export default function Checkout() {
       total,
       address,
       payment,
-      date
+      date,
     };
 
     try {
@@ -174,14 +174,31 @@ export default function Checkout() {
         config
       );
       DeleteCart();
-      navigate("/success");
     } catch (error) {
       const message = error.response.statusText;
       alert(message);
     }
   }
 
-  async function DeleteCart() {}
+  async function DeleteCart() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      await axios.delete(
+        `https://neon-game-store-back.herokuapp.com/cart`,
+        // body,
+        config
+      );
+      navigate("/success");
+    } catch (error) {
+      const message = error.response.statusText;
+      alert(message);
+    }
+  }
 
   return (
     <>
