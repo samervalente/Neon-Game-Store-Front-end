@@ -7,3 +7,10 @@ body{
     color: white;
     font-family: 'Inria Sans';
 }
+
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
