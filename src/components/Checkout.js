@@ -236,7 +236,7 @@ export default function Checkout() {
           <Products>{RenderCustomerData()}</Products>
           {RenderTotal()}
         </Collapsible>
-        <button onClick={() => SubmitOrder()}>Finalizar compra</button>
+        <Confirm onClick={() => SubmitOrder()}>Finalizar compra</Confirm>
       </Container>
       <Footer />
     </>
@@ -275,18 +275,6 @@ const Container = styled.main`
   .Collapsible__contentInner {
     /* max-height: calc((100vh - 380px)); */
     max-height: max-content;
-  }
-
-  button {
-    background: linear-gradient(233.29deg, #ff1010 -27.18%, #8a0000 173.14%);
-    border-radius: 0px 13.8848px;
-    border: none;
-    width: 230px;
-    height: 50px;
-    color: #ffffff;
-    font-family: "Goldman", cursive;
-    font-size: 18px;
-    cursor: pointer;
   }
 
   input {
@@ -412,4 +400,57 @@ const RadioGroup = styled.div`
   input[type="radio"] {
     margin: 0 3px 5px 10px;
   }
+`;
+
+const Confirm = styled.div`
+  font-family: "Goldman";
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  border: 4px solid #ffab2d;
+  border-radius: 0px 8px 0px 8px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #ffab2d;
+  box-shadow: inset 0 0 20px #ffab2d, 0 0 20px #ffab2d;
+  position: relative;
+
+  &:before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffab2d;
+    left: 0;
+    top: 120%;
+
+    transform: perspective(64px) rotateX(40deg) scale(1, 0.35);
+    filter: blur(64px);
+    opacity: 0.7;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffab2d;
+    box-shadow: 0 0 128px 32px #ffab2d;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 100ms linear;
+  }
+  &:hover::after,
+  &:focus::after {
+    opacity: 1;
+  }
+
+  &:hover,
+  &:focus {
+    color: #202631;
+    text-shadow: none;
+  }
+
+  cursor: pointer;
 `;

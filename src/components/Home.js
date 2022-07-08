@@ -23,17 +23,22 @@ export default function Home() {
     navigate(`/game/${id}`);
   }
 
+  async function FilterCategory(category){
+    console.log(category)
+      const {data} = await axios.get(`https://neon-game-store-back.herokuapp.com/games?category=${category}`)
+      setGames(data)
+  }
+
   const gameComponent = games.map((game) => {
     return (
       <div
         key={game._id}
         className="gameSection"
-        onClick={() => choiceGame(game._id)}
       >
-        <img className="gameImage" src={game.imageURL} alt="imgGame" />
+        <img  onClick={() => choiceGame(game._id)}  className="gameImage" src={game.imageURL} alt="imgGame" />
         <p className="name">{game.name}</p>
         <p className="price">{game.price.toFixed(2)}</p>
-        <div className="addcart">Adicionar ao carrino</div>
+        <div onClick={() => console.log(game._id)} className="addcart">Adicionar ao carrino</div>
       </div>
     );
   });
@@ -45,10 +50,11 @@ export default function Home() {
       </header>
       <Main>
         <ul className="Category">
-          <li clicked="true">Popular</li>
-          <li>Ação</li>
-          <li>Aventura</li>
-          <li>FPS</li>
+          <li onClick={() => FilterCategory("Todos")}>Todos</li>
+          <li onClick={() => FilterCategory("Action")}>Ação</li>
+          <li onClick={() => FilterCategory("Adventure")}>Aventura</li>
+          <li onClick={() => FilterCategory("FPS")}>FPS</li>
+          <li onClick={() => FilterCategory("Suspense")}>Suspense</li>
         </ul>
         <div className="GamesSection">{gameComponent}</div>
       </Main>
