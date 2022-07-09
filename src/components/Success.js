@@ -42,7 +42,7 @@ const Container = styled.main`
 
   span {
     font-family: "Goldman", cursive;
-    color: #dfff1e;
+    color: #ffab2d;
     font-size: 18px;
     cursor: pointer;
   }
@@ -53,7 +53,7 @@ const Container = styled.main`
 
     &:hover {
       text-decoration: underline;
-      text-decoration-color: #dfff1e;
+      text-decoration-color: #ffab2d;
     }
   }
 

@@ -6,6 +6,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { IoCartOutline, IoCloseCircleSharp } from "react-icons/io5";
 import Footer from "../shared/Footer.js";
+import NeonButton from "../shared/NeonButton";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -87,7 +88,11 @@ export default function Cart() {
             <span>SALDO</span>
             <span>${total}</span>
           </Total>
-          <button onClick={() => SubmitCheckout(total)}>Continuar</button>
+          <NeonButton
+            onClick={() => SubmitCheckout(total)}
+            margin={"50px 0px 0px 0px"}
+            content={"Continuar"}
+          ></NeonButton>
         </>
       );
     }
@@ -184,25 +189,11 @@ const Container = styled.main`
     text-align: center;
     margin-bottom: 130px;
   }
-
-  button {
-    background: linear-gradient(233.29deg, #ff1010 -27.18%, #8a0000 173.14%);
-    border-radius: 0px 13.8848px;
-    border: none;
-    width: 230px;
-    height: 50px;
-    color: #ffffff;
-    font-family: "Goldman", cursive;
-    font-size: 18px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 120px;
-  }
 `;
 
 const Header = styled.div`
   background-color: #151515;
-  color: #dfff1e;
+  color: #ffab2d;
   width: 100%;
   height: 50px;
   display: flex;
@@ -232,7 +223,7 @@ const Products = styled.div`
 `;
 
 const Product = styled.div`
-  color: #dfff1e;
+  color: #ffab2d;
   width: 100%;
   height: 160px;
   display: flex;
@@ -272,7 +263,7 @@ const Info = styled.div`
 `;
 
 const Total = styled.div`
-  color: #dfff1e;
+  color: #ffab2d;
   background-color: #151515;
   width: 100%;
   display: flex;
@@ -290,6 +281,6 @@ const Total = styled.div`
   }
 
   span:nth-child(2) {
-    color: #dfff1e;
+    color: #ffab2d;
   }
 `;
