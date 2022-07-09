@@ -16,9 +16,9 @@ export default function Checkout() {
   const { user } = useContext(UserContext);
   const { name, token } = user;
   const [order, setOrder] = useState([]);
-  const [phone, setPhone] = useState([]);
-  const [address, setAddress] = useState([]);
-  const [cpf, setCpf] = useState([]);
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [cpf, setCpf] = useState("");
   const [payment, setPayment] = useState("");
   const date = dayjs().format("DD/MM/YYYY");
 
@@ -128,7 +128,7 @@ export default function Checkout() {
             type="radio"
             id="creditcard"
             name="fav_language"
-            value="creditcard"
+            value="Cartão de crédito"
             onChange={(e) => setPayment(e.target.value)}
           />
           <label htmlFor="creditcard">Cartão de Crédito</label>
@@ -137,7 +137,7 @@ export default function Checkout() {
             type="radio"
             id="debitcard"
             name="fav_language"
-            value="debitcard"
+            value="Cartão de débito"
             onChange={(e) => setPayment(e.target.value)}
           />
           <label htmlFor="debitcard">Cartão de Débito</label> <br></br>
@@ -145,7 +145,7 @@ export default function Checkout() {
             type="radio"
             id="boleto"
             name="fav_language"
-            value="boleto"
+            value="Boleto"
             onChange={(e) => setPayment(e.target.value)}
           />
           <label htmlFor="boleto">Boleto</label>
