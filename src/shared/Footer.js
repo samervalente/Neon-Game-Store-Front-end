@@ -8,31 +8,31 @@ export default function Footer() {
        <Link to="/home">
         <div>
         <ion-icon name="game-controller-outline"></ion-icon>
-          <p>Games</p>
+          <p>Jogos</p>
         </div>
       </Link>
       <Link to="/profile">
         <div>
           <ion-icon name="person-outline"></ion-icon>
-          <p>Profile</p>
+          <p>Perfil</p>
         </div>
       </Link>
       <Link to="/cart">
         <div>
           <ion-icon name="cart-outline"></ion-icon>
-          <p>Cart</p>
+          <p>Carrinho</p>
         </div>
       </Link>
       <Link to="/orders">
         <div>
           <ion-icon name="bag-handle-outline"></ion-icon>
-          <p>Orders</p>
+          <p>Pedidos</p>
         </div>
       </Link>
       <Link to="/">
         <div>
           <ion-icon name="exit-outline"></ion-icon>
-          <p>Exit</p>
+          <p>Sair</p>
         </div>
       </Link>
     </ContainerFooter>
@@ -40,7 +40,7 @@ export default function Footer() {
 }
 
 const ContainerFooter = styled.div`
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #212121;
   backdrop-filter: blur(35px);
   position: fixed;
   bottom: 0;
