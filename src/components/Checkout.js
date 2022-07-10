@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
@@ -7,22 +6,21 @@ import axios from "axios";
 import styled from "styled-components";
 import { IoBagCheckOutline } from "react-icons/io5";
 import Collapsible from "react-collapsible";
+import { TailSpin } from "react-loader-spinner";
 import dayjs from "dayjs";
 import Footer from "../shared/Footer.js";
-import Confirm from "../shared/NeonButton";
+import NeonButton from "../shared/NeonButton";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const { name, token } = user;
   const [order, setOrder] = useState([]);
-  const { total, products } = order;
-  const [phone, setPhone] = useState([]);
-  const [address, setAddress] = useState([]);
-  const [cpf, setCpf] = useState([]);
-  const [payment, setPayment] = useState([]);
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [payment, setPayment] = useState("");
   const date = dayjs().format("DD/MM/YYYY");
-
 
   useEffect(() => {
     async function GetOrder() {
@@ -33,11 +31,11 @@ export default function Checkout() {
       };
 
       try {
-        const { data } = await axios.get(
+        const response = await axios.get(
           "https://neon-game-store-back.herokuapp.com/checkout"
         );
 
-        setOrder(data);
+        setOrder(response.data);
       } catch (error) {
         const message = error.response.statusText;
         alert(message);
@@ -46,22 +44,25 @@ export default function Checkout() {
     GetOrder();
   }, []);
 
-  function RenderProducts() {
-    if (order.length === 0) {
-      return (
-        <div>
-          {/* <p>
-            Não há produtos <br></br> em seu carrinho
-          </p> */}
-        </div>
-      );
-    }
+  if (order.length === 0) {
+    return (
+      <Loading>
+        <TailSpin
+          color="#ffab2d"
+          text-align="center"
+          ariaLabel="loading-indicator"
+        />
+      </Loading>
+    );
+  }
 
-    return products.map((product, index) => {
+  function RenderProducts() {
+    console.log(order);
+
+    return order[0].products.map((product, index) => {
       const { name, price, imageURL, _id } = product;
       return (
         <>
-
           <Product key={index}>
             <Info>
               <Link to={`game/${_id}`}>
@@ -83,14 +84,13 @@ export default function Checkout() {
       <>
         <Total>
           <span>TOTAL</span>
-          <span>${total}</span>
+          <span>${order[0].total}</span>
         </Total>
       </>
     );
   }
 
   function RenderCustomerData() {
-    console.log(payment);
     return (
       <>
         <input
@@ -128,7 +128,7 @@ export default function Checkout() {
             type="radio"
             id="creditcard"
             name="fav_language"
-            value="creditcard"
+            value="Cartão de crédito"
             onChange={(e) => setPayment(e.target.value)}
           />
           <label htmlFor="creditcard">Cartão de Crédito</label>
@@ -137,7 +137,7 @@ export default function Checkout() {
             type="radio"
             id="debitcard"
             name="fav_language"
-            value="debitcard"
+            value="Cartão de débito"
             onChange={(e) => setPayment(e.target.value)}
           />
           <label htmlFor="debitcard">Cartão de Débito</label> <br></br>
@@ -145,7 +145,7 @@ export default function Checkout() {
             type="radio"
             id="boleto"
             name="fav_language"
-            value="boleto"
+            value="Boleto"
             onChange={(e) => setPayment(e.target.value)}
           />
           <label htmlFor="boleto">Boleto</label>
@@ -160,6 +160,7 @@ export default function Checkout() {
         Authorization: `Bearer ${token}`,
       },
     };
+    const { total, products } = order[0];
     console.log(total);
     const body = {
       name,
@@ -240,7 +241,10 @@ export default function Checkout() {
           <Products>{RenderCustomerData()}</Products>
           {RenderTotal()}
         </Collapsible>
-        <Confirm onClick={() => SubmitOrder()}>Finalizar compra</Confirm>
+        <NeonButton
+          onClick={() => SubmitOrder()}
+          content={"Finalizar compra"}
+        ></NeonButton>
       </Container>
       <Footer />
     </>
@@ -256,7 +260,7 @@ const Container = styled.main`
   overflow-x: hidden;
   justify-content: "flex-start";
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 110px;
   padding: 15px;
   overflow-y: hidden;
 
@@ -268,7 +272,6 @@ const Container = styled.main`
     background-color: #212121;
     border-radius: 10px;
     color: #d8d4d4;
-    /* padding-right:5px; */
     border: 0.1rem solid #fff;
     border-radius: 0.1rem;
     padding: 0.4em;
@@ -279,6 +282,7 @@ const Container = styled.main`
   .Collapsible__contentInner {
     /* max-height: calc((100vh - 380px)); */
     max-height: max-content;
+    padding: 5px;
   }
 
   input {
@@ -356,14 +360,6 @@ const Product = styled.div`
     color: #ffffff;
   }
 
-  i {
-    font-size: 22px;
-    margin-bottom: 65px;
-    color: #ffffff;
-    margin-left: 30px;
-    cursor: pointer;
-  }
-
   img {
     width: 130px;
     height: 160px;
@@ -382,7 +378,6 @@ const Total = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
 
   span {
     color: #d8d4d4;
@@ -406,3 +401,9 @@ const RadioGroup = styled.div`
   }
 `;
 
+const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
