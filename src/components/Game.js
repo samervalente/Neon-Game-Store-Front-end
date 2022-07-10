@@ -9,13 +9,13 @@ export default function Game() {
   const { id } = useParams();
 
 
+    useEffect(() => {
     async function FetchData(){
       const {data} = await axios.get(`https://neon-game-store-back.herokuapp.com/game/${id}`)
       setGame(data)
-      
-    }  
-
-    useEffect(FetchData, [])
+    } 
+    FetchData() 
+    }, [id])
     console.log(game.platforms)
   
     return (
@@ -25,7 +25,6 @@ export default function Game() {
             </div>
             <div className="infos">
                   <h2 className="gamename">{game.name}</h2>
-            
                   <div className="tec-infos"></div>
                   <h3>Sobre o jogo</h3>
               <p className="description">{game.description}</p>

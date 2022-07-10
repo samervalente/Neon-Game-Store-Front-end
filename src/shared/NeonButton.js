@@ -10,8 +10,6 @@ export default function NeonButton({content, margin}){
     )
 }
 
-
-
 const Button = styled.div`
 font-family: 'Goldman';
 text-decoration: none;
