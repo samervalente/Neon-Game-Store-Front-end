@@ -16,7 +16,7 @@ export default function Login() {
             password: password
         }
         console.log(user);
-        const promisse = axios.post('localhost:5001', user);
+        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/login", user);
         promisse.then(response => {
             console.log(response);
             navigate('/profile');

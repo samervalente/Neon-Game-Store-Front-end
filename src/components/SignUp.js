@@ -22,7 +22,7 @@ export default function SignUp(){
             alert("CONFIRME SUA SENHA CORRETAMENTE");
             return
         }
-        const promisse = axios.post('localhost:5001/sign-up', newUser);
+        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/", newUser);
         promisse.then(response =>{
             console.log(response);
             navigate('/');
