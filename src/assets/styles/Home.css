@@ -1,0 +1,60 @@
+/*Este é um arquivo temporário pois irá ser transformado em styled compoennts */
+
+.gameImage{
+    position: relative;
+    display: inline-block;
+    width: 167px;
+    height:205px;
+}
+
+
+.gameSection .name{
+    font-family: 'Goldman';
+    font-size:14px;
+    width: 130px;
+}
+
+.gameSection .price{
+    font-family: 'Goldman';
+    font-size:14px;
+    color:#FBFF49;
+    margin-top:10px;
+}
+
+.gameSection:last-child{
+    margin-bottom: 110px;
+}
+
+.actions{
+    display: flex;
+    flex-direction: column;
+}
+
+.actions button{
+    margin: 10px 0px;
+    border-radius: 5px;
+    border:none;
+    font-size: xl;
+    height:30px;
+    font-family: "Inria Sans";
+}
+
+.actions a{
+    color:white;
+}
+
+.buynow{
+    background: linear-gradient(
+      180deg,
+      rgba(255, 16, 16, 1) 0%,
+      rgba(138, 0, 0, 1) 100%
+    );
+    color: white;
+    
+}
+
+
+
+
+
+

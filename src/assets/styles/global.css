@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #151515;
+    color: white;
+    font-family: 'Inria Sans';
+}
+
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
