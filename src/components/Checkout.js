@@ -242,10 +242,9 @@ export default function Checkout() {
           <Products>{RenderCustomerData()}</Products>
           {RenderTotal()}
         </Collapsible>
-        <NeonButton
-          onClick={() => SubmitOrder()}
-          content={"Finalizar compra"}
-        ></NeonButton>
+        <button onClick={() => SubmitOrder()}>
+          <NeonButton content={"Finalizar compra"}></NeonButton>
+        </button>
       </Container>
       <Footer />
     </>
@@ -264,6 +263,12 @@ const Container = styled.main`
   margin-bottom: 110px;
   padding: 15px;
   overflow-y: hidden;
+
+  button {
+    background-color: #11ffee00;
+    border: none;
+    color: #ffffff;
+  }
 
   .Collapsible {
     width: 100%;
