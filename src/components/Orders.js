@@ -37,20 +37,18 @@ export default function Checkout() {
     GetOrders();
   }, []);
 
-  if (orders.length === 0) {
-    return (
-      <Loading>
-        <TailSpin
-          color="#ffab2d"
-          text-align="center"
-          ariaLabel="loading-indicator"
-        />
-      </Loading>
-    );
-  }
-
   function RenderOrders() {
     console.log(orders);
+    if (orders.length === 0) {
+      return (
+        <Loading>
+          <p>
+            Você ainda não <br></br> efetuou nenhuma compra!
+          </p>
+        </Loading>
+      );
+    }
+
     return orders.map((order, index) => {
       const { payment, date, orderNumber, total } = order;
 
@@ -206,7 +204,15 @@ const Loading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  margin-top:300px;
+
+  p {
+    font-family: "Inria Sans", sans-serif;
+    color: #d8d4d4;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 130px;
+  }
 `;
 
 const Total = styled.div`
