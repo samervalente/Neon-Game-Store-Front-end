@@ -18,7 +18,7 @@ export default function Login() {
         const promisse = axios.post("https://neon-game-store-back.herokuapp.com/login", body);
         promisse.then(response => {
             setUser(response.data)
-            navigate('/profile');
+            navigate('/home');
         })
             .catch(erro => { alert('bad request') });
     }
