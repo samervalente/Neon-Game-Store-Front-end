@@ -11,7 +11,7 @@ import Footer from "../shared/Footer.js";
 
 export default function Checkout() {
   const { user } = useContext(UserContext);
-  const { name, token } = user;
+  const { token } = user;
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,8 @@ export default function Checkout() {
 
       try {
         const response = await axios.get(
-          "https://neon-game-store-back.herokuapp.com/orders"
+          "https://neon-game-store-back.herokuapp.com/orders",
+          config
         );
 
         setOrders(response.data);

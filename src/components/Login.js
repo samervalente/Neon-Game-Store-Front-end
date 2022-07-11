@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,  useContext } from 'react';
+import UserContext from "../context/UserContext";
 import Logo from '../assets/images/Logo2.png';
 import axios from 'axios';
 
 export default function Login() {
-
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+  
     function signIn() {
         const user = {
             email: email,
@@ -18,8 +19,8 @@ export default function Login() {
         console.log(user);
         const promisse = axios.post("https://neon-game-store-back.herokuapp.com/login", user);
         promisse.then(response => {
-            console.log(response);
-            navigate('/profile');
+            setUser(response.data);
+            navigate('/home');
         })
             .catch(erro => { alert('bad request') });
     }
