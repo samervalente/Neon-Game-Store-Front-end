@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { useState } from "react";
-import Logo from '../assets/neon-control.webp';
+import Logo from '../assets/images/Logo2.png';
 import axios from "axios";
 
 export default function SignUp(){
@@ -36,8 +36,8 @@ export default function SignUp(){
     return(
         <Align>
             <div>
-                <h1>Faça parte da nossa comunidade</h1>
                 <div><img src={Logo} alt="neon-games" /></div>
+                <h1>Faça parte da nossa comunidade</h1>
                 <input placeholder=' nome' type='text' value={name} onChange={e => setName(e.target.value)}/>
                 <input placeholder=' email' type='email' value={email} onChange={e => setEmail(e.target.value)}/>
                 <input placeholder=' senha' type='password' value={password} onChange={e => setPassword(e.target.value)}/>
@@ -62,15 +62,23 @@ const Align = styled.section`
     color: white;
     img{
         width: 303px;
-        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+    h1{
+        margin-bottom: 20px;
     }
     input{
-        display: block;
         width: 303px;
         height: 50px;
-        border-radius: 5px;
-        border: 2px groove #F317FF;
         margin-bottom: 15px;
+        font-family: 'Goldman';
+        text-decoration: none;
+        display: block;
+        padding: 8px;
+        border: 4px solid #FF922D;
+        border-radius: 0px 8px 0px 8px;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #FF922D;
+        box-shadow: inset 0 0 20px #FF922D, 0 0 20px #FF922D;
     }
     button{
         width: 303px;
@@ -79,5 +87,16 @@ const Align = styled.section`
         border: none;
         margin-bottom: 15px;
         border: 4px groove #F317FF;
+        font-family: 'Goldman';
+        text-decoration: none;
+        display: block;
+        padding: 8px;
+        border: 4px solid #FF922D;
+        border-radius: 0px 8px 0px 8px;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #FF922D;
+        box-shadow: inset 0 0 20px #FF922D, 0 0 20px #FF922D;
+    }
+    p{
+        color: #FF922D;
     }
 `;

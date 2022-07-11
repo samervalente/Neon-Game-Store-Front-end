@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Logo from '../assets/neon-control.webp';
+import Logo from '../assets/images/Logo2.png';
 import axios from 'axios';
 
 export default function Login() {
@@ -27,8 +27,6 @@ export default function Login() {
     return (
         <Align>
             <div>
-                <h1>NEON GAME</h1>
-                <h1>STORE</h1>
                 <div><img src={Logo} alt="neon-games" /></div>
                 <input placeholder=' email' type='email' value={email} onChange={e => setEmail(e.target.value)} />
                 <input placeholder=' senha' type='password' value={password} onChange={e => setPassword(e.target.value)} />
@@ -49,18 +47,22 @@ const Align = styled.section`
     font-family: 'Goldman';
     font-style: normal;
     font-weight: 400;
-    color: white;
     img{
         width: 303px;
-        border-radius: 50%;
+        padding: 0 0 40px 0;
     }
     input{
-        display: block;
         width: 303px;
         height: 50px;
-        border-radius: 5px;
-        border: 2px groove #F317FF;
         margin-bottom: 15px;
+        font-family: 'Goldman';
+        text-decoration: none;
+        display: block;
+        padding: 8px;
+        border: 4px solid #FF922D;
+        border-radius: 0px 8px 0px 8px;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #FF922D;
+        box-shadow: inset 0 0 20px #FF922D, 0 0 20px #FF922D;
     }
     button{
         width: 303px;
@@ -69,5 +71,16 @@ const Align = styled.section`
         border: none;
         margin-bottom: 15px;
         border: 4px groove #F317FF;
+        font-family: 'Goldman';
+        text-decoration: none;
+        display: block;
+        padding: 8px;
+        border: 4px solid #FF922D;
+        border-radius: 0px 8px 0px 8px;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #FF922D;
+        box-shadow: inset 0 0 20px #FF922D, 0 0 20px #FF922D;
+    }
+    p{
+        color: #FF922D;
     }
 `;
