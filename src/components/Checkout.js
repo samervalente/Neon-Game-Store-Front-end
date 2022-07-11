@@ -21,6 +21,11 @@ export default function Checkout() {
   const [cpf, setCpf] = useState("");
   const [payment, setPayment] = useState("");
   const date = dayjs().format("DD/MM/YYYY");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   useEffect(() => {
     async function GetOrder() {
@@ -155,12 +160,39 @@ export default function Checkout() {
     );
   }
 
+
+  async function DeleteCart() {
+   
+
+    try {
+      await axios.delete(
+        `https://neon-game-store-back.herokuapp.com/cart`,
+        // body,
+        config
+      );
+      DeleteCheckout();
+    } catch (error) {
+      const message = error.response.statusText;
+      alert(message);
+    }
+  }
+
+  async function DeleteCheckout() {
+    try {
+      await axios.delete(
+        `https://neon-game-store-back.herokuapp.com/checkout`,
+        // body,
+        config
+      );
+     
+    } catch (error) {
+      const message = error.response.statusText;
+      alert(message);
+    }
+  }
+
   async function SubmitOrder() {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+
     const { total, products } = order[0];
     console.log(total);
     const body = {
@@ -180,46 +212,7 @@ export default function Checkout() {
         config
       );
       DeleteCart();
-    } catch (error) {
-      const message = error.response.statusText;
-      alert(message);
-    }
-  }
-
-  async function DeleteCart() {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    try {
-      await axios.delete(
-        `https://neon-game-store-back.herokuapp.com/cart`,
-        // body,
-        config
-      );
-      DeleteCheckout();
-    } catch (error) {
-      const message = error.response.statusText;
-      alert(message);
-    }
-  }
-
-  async function DeleteCheckout() {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    try {
-      await axios.delete(
-        `https://neon-game-store-back.herokuapp.com/checkout`,
-        // body,
-        config
-      );
-      navigate("/success");
+      navigate("/success")
     } catch (error) {
       const message = error.response.statusText;
       alert(message);
@@ -243,7 +236,7 @@ export default function Checkout() {
           {RenderTotal()}
         </Collapsible>
         <NeonButton
-          onClick={() => SubmitOrder()}
+          onClick={SubmitOrder}
           content={"Finalizar compra"}
         ></NeonButton>
       </Container>

@@ -1,25 +1,22 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../shared/Footer";
+import UserContext from "../context/UserContext"
 
 export default function Game() {
   const [game, setGame] = useState({});
+  const [added, setAdded] = useState(false)
+  const {user} = useContext(UserContext)
   const { id } = useParams();
+  const config = {
+    headers:{
+      Authorization: `Bearer ${user.token}`
+    }
+  }
 
-  useEffect(
-    () =>
-      async function FetchData() {
-        const { data } = await axios.get(
-          `https://neon-game-store-back.herokuapp.com/game/${id}`
-        );
-        setGame(data);
-      },
-    []
-  );
-  
-
+  console.log(game)
     useEffect(() => {
     async function FetchData(){
       const {data} = await axios.get(`https://neon-game-store-back.herokuapp.com/game/${id}`)
@@ -29,31 +26,61 @@ export default function Game() {
     }, [id])
 
      const isEmpty = Object.keys(game).length === 0 
-    
+     async function addToCart(){
+      try {
+        const body = {name: game.name, price:game.price, description:game.description, imageURL:game.imageURL}
+        await axios.post("https://neon-game-store-back.herokuapp.com/cart", body, config)
+        setAdded(true)
+        
+      } catch (error) {
+        alert("Erro ao adicionar ao carrinho")
+      }
+
+
+      }
+
+  async function removeFromCart(){
+    const bool = window.confirm("Deseja remover este produto do carrinho?")
+    if(bool && !isEmpty){
+      try {
+        await axios.delete(`https://neon-game-store-back.herokuapp.com/cart/${game._id}`,config)
+        console.log("Removido com sucesso")
+        setAdded(false)
+      } catch (error) {
+        alert("Erro ao remover do carrinho")
+      }
+    }
+  }
     return (
        <>
-          {!isEmpty ? <Container>
-            <div className="section">
-              <img className="imagesolo" src={game.soloURL}/>
-            </div>
-            <div className="infos">
-                  <h2 className="gamename">{game.name}</h2>
-                  <div className="tec-infos"></div>
-                  <h3>Sobre o jogo</h3>
-              <p className="description">{game.description}</p>
-            </div>
-            <div className="footer">
-              <div className="actions">
-                <Link to="/checkout">
-                  <button className="comprar">Compre Agora</button>
-                </Link>
-                <p className="price">R$ {game.price.toFixed(2).replace(".",",")}</p>
+       <Container>
+          {!isEmpty ? 
+           <>
+             <div className="section">
+            <img className="imagesolo" src={game.soloURL}/>
+          </div>
+          <div className="infos">
+                <h2 className="gamename">{game.name}</h2>
+                <div className="tec-infos"></div>
+                <h3>Sobre o jogo</h3>
+            <p className="description">{game.description}</p>
+          </div>
+          <div className="footer">
+            <div className="actions">
+              <div>
+              <Link to="/checkout">
+                <button className="comprar">Compre Agora</button>
+              </Link>
+              {added ? <button onClick={removeFromCart}>Remover do Carrinho</button> : <button onClick={addToCart}>Adicionar ao Carrinho</button>}
               </div>
-              <button>Adicionar ao carrinho</button>
+              <p className="price">R$ {game.price.toFixed(2).replace(".",",")}</p>
             </div>
-            
-            <Footer />
-        </Container>:  "Carregando..."}
+         
+          </div>
+          
+          <Footer /> 
+           </>: "Carregando..." }
+        </Container>
        </>
     )
 }
@@ -105,11 +132,16 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
 
+  
     .price {
       color: #dfff1e;
       font-size: 20px;
       margin-left: 10px;
     }
+  }
+
+  a{
+    text-decoration: none;
   }
 
   button {
@@ -121,11 +153,13 @@ const Container = styled.div`
     color: white;
     font-family: "Goldman";
     border-radius: 5px;
-    text-align: none;
-    width: 50%;
+    width: 100%;
     border: none;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 10px;
-    font-size: 1em;
+    font-size: 16px;
   }
 `;

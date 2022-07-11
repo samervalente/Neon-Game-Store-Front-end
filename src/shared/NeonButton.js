@@ -55,10 +55,6 @@ transition: opacity 100ms linear;
     opacity: 1;
 }
 
-&:hover, &:focus{
-    color: #FF922D;
-    text-shadow: inset 2px 2px #FF922D;
-}
 
 cursor: pointer;
 
