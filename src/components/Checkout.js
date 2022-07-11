@@ -235,10 +235,11 @@ export default function Checkout() {
           <Products>{RenderCustomerData()}</Products>
           {RenderTotal()}
         </Collapsible>
+        <button onClick={SubmitOrder}>
         <NeonButton
-          onClick={SubmitOrder}
           content={"Finalizar compra"}
         ></NeonButton>
+        </button>
       </Container>
       <Footer />
     </>
