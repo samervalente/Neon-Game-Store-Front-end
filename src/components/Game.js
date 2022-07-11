@@ -18,44 +18,51 @@ export default function Game() {
       },
     []
   );
-  
 
-    useEffect(() => {
-    async function FetchData(){
-      const {data} = await axios.get(`https://neon-game-store-back.herokuapp.com/game/${id}`)
-      setGame(data)
-    } 
-    FetchData() 
-    }, [id])
+  useEffect(() => {
+    async function FetchData() {
+      const { data } = await axios.get(
+        `https://neon-game-store-back.herokuapp.com/game/${id}`
+      );
+      setGame(data);
+    }
+    FetchData();
+  }, [id]);
 
-     const isEmpty = Object.keys(game).length === 0 
-    
-    return (
-       <>
-          {!isEmpty ? <Container>
-            <div className="section">
-              <img className="imagesolo" src={game.soloURL}/>
+  const isEmpty = Object.keys(game).length === 0;
+
+  return (
+    <>
+      {!isEmpty ? (
+        <Container>
+          <div className="section">
+            <img className="imagesolo" src={game.soloURL} alt="imgGame" />
+          </div>
+          <div className="infos">
+            <h2 className="gamename">{game.name}</h2>
+            <div className="tec-infos"></div>
+            <h3>Sobre o jogo</h3>
+            <p className="description">{game.description}</p>
+          </div>
+          <div className="footer">
+            <div className="actions">
+              <Link to="/checkout">
+                <button className="comprar">Compre Agora</button>
+              </Link>
+              <p className="price">
+                R$ {game.price.toFixed(2).replace(".", ",")}
+              </p>
             </div>
-            <div className="infos">
-                  <h2 className="gamename">{game.name}</h2>
-                  <div className="tec-infos"></div>
-                  <h3>Sobre o jogo</h3>
-              <p className="description">{game.description}</p>
-            </div>
-            <div className="footer">
-              <div className="actions">
-                <Link to="/checkout">
-                  <button className="comprar">Compre Agora</button>
-                </Link>
-                <p className="price">R$ {game.price.toFixed(2).replace(".",",")}</p>
-              </div>
-              <button>Adicionar ao carrinho</button>
-            </div>
-            
-            <Footer />
-        </Container>:  "Carregando..."}
-       </>
-    )
+            <button>Adicionar ao carrinho</button>
+          </div>
+
+          <Footer />
+        </Container>
+      ) : (
+        "Carregando..."
+      )}
+    </>
+  );
 }
 
 const Container = styled.div`

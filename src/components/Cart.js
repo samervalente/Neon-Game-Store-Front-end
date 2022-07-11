@@ -11,7 +11,7 @@ import NeonButton from "../shared/NeonButton";
 export default function Cart() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { name, token } = user;
+  const { token } = user;
   const [productsCart, setProductsCart] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,8 @@ export default function Cart() {
 
       try {
         const { data } = await axios.get(
-          "https://neon-game-store-back.herokuapp.com/cart"
+          "https://neon-game-store-back.herokuapp.com/cart",
+          config
         );
 
         setProductsCart(data);
@@ -88,11 +89,12 @@ export default function Cart() {
             <span>SALDO</span>
             <span>${total}</span>
           </Total>
+          <button onClick={()=>SubmitCheckout(total)}>
           <NeonButton
-            onClick={() => SubmitCheckout(total)}
             margin={"50px 0px 0px 0px"}
             content={"Continuar"}
           ></NeonButton>
+          </button>
         </>
       );
     }
@@ -128,6 +130,7 @@ export default function Cart() {
   }
 
   async function SubmitCheckout(total) {
+    console.log('submit')
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -188,6 +191,12 @@ const Container = styled.main`
     font-size: 24px;
     text-align: center;
     margin-bottom: 130px;
+  }
+
+  button{
+    background-color: #11ffee00;
+    border:none;
+    color:#FFFFFF;
   }
 `;
 
