@@ -22,7 +22,7 @@ export default function SignUp(){
             alert("CONFIRME SUA SENHA CORRETAMENTE");
             return
         }
-        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/", newUser);
+        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/signup", newUser);
         promisse.then(response =>{
             console.log(response);
             navigate('/');
@@ -98,5 +98,10 @@ const Align = styled.section`
     }
     p{
         color: #FF922D;
+    }
+
+
+    a{
+        text-decoration: none;
     }
 `;

@@ -1,37 +1,37 @@
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Logo from '../assets/images/Logo2.png';
 import axios from 'axios';
+import UserContext from '../context/UserContext';
 
 export default function Login() {
+    const [body, setBody] = useState({
+        email:"",
+        password:"" 
+    })
+    const {user, setUser} = useContext(UserContext)
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     function signIn() {
-        const user = {
-            email: email,
-            password: password
-        }
-        console.log(user);
-        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/login", user);
+        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/login", body);
         promisse.then(response => {
-            console.log(response);
+            setUser(response.data)
             navigate('/profile');
         })
             .catch(erro => { alert('bad request') });
     }
 
+
     return (
         <Align>
             <div>
                 <div><img src={Logo} alt="neon-games" /></div>
-                <input placeholder=' email' type='email' value={email} onChange={e => setEmail(e.target.value)} />
-                <input placeholder=' senha' type='password' value={password} onChange={e => setPassword(e.target.value)} />
+                <input placeholder=' email' type='email' value={body.email} onChange={e => setBody({...body, email:e.target.value})} />
+                <input placeholder=' senha' type='password' value={body.password} onChange={e => setBody({...body, password:e.target.value})} />
                 <button onClick={signIn}>Entrar</button>
-                <Link to='/sign-up'><p>Não tem uma conta? Cadastre-se</p></Link>
+                <Link to='/signup'><p>Não tem uma conta? Cadastre-se</p></Link>
             </div>
         </Align>
     )
@@ -82,5 +82,9 @@ const Align = styled.section`
     }
     p{
         color: #FF922D;
+    }
+
+    a{
+        text-decoration: none;
     }
 `;
