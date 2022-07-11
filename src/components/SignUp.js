@@ -22,7 +22,7 @@ export default function SignUp(){
             alert("CONFIRME SUA SENHA CORRETAMENTE");
             return
         }
-        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/", newUser);
+        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/signup", newUser);
         promisse.then(response =>{
             console.log(response);
             navigate('/');
@@ -42,7 +42,7 @@ export default function SignUp(){
                 <input placeholder=' email' type='email' value={email} onChange={e => setEmail(e.target.value)}/>
                 <input placeholder=' senha' type='password' value={password} onChange={e => setPassword(e.target.value)}/>
                 <input placeholder=' confirme sua senha' type='password' value={confirmPassword} onChange={e => setConfirm(e.target.value)}/>
-                <button onClick={register}>Entrar</button>
+                <button onClick={register}>Cadastrar</button>
                 <Link to='/'><p>Ja tem uma conta? Faça o login aqui</p></Link>
             </div>
         </Align>
