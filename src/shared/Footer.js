@@ -11,12 +11,6 @@ export default function Footer() {
           <p>Jogos</p>
         </div>
       </Link>
-      <Link to="/profile">
-        <div>
-          <ion-icon name="person-outline"></ion-icon>
-          <p>Perfil</p>
-        </div>
-      </Link>
       <Link to="/cart">
         <div>
           <ion-icon name="cart-outline"></ion-icon>

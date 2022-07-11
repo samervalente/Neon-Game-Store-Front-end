@@ -32,7 +32,8 @@ export default function Checkout() {
 
       try {
         const response = await axios.get(
-          "https://neon-game-store-back.herokuapp.com/checkout"
+          "https://neon-game-store-back.herokuapp.com/checkout",
+          config
         );
 
         setOrder(response.data);
