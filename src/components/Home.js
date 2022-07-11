@@ -10,13 +10,8 @@ import UserContext from "../context/UserContext";
 export default function Home() {
   const [gamesData, setGamesData] = useState([]);
   const navigate = useNavigate();
-  const {user} = useContext(UserContext)
-  const config = {
-    headers:{
-      Authorization: `Bearer ${user.token}`
-    }
-  }
-
+  const { user } = useContext(UserContext);
+  
   useEffect(() => {
     async function FetchData() {
       const { data } = await axios.get(
@@ -31,38 +26,7 @@ export default function Home() {
     navigate(`/game/${id}`);
   }
 
-  function addToCart(id){
-      const adds = gamesData.map((game) => {
-        if(id === game._id){
-          const body = {name:game.name, description:game.description, price:game.price, imageURL: game.imageURL }
-          axios.post("https://neon-game-store-back.herokuapp.com/cart?cartStatus=true", body, config).then(() =>{
-            console.log("Tudo ok")
-          }).catch(error => {
-            console.log(error)
-          })
-        }
-      })
-    setGamesData(adds)
 
-  }
-
-  function removeFromCart(id){
-    const bool = window.confirm("Deseja remover este produto do carrinho?")
-    if(bool){
-      const removes = gamesData.map(game => {
-        if(id === game._id){
-          axios.delete(`https://neon-game-store-back.herokuapp.com/cart/${id}?cartStatus=false`,config).then(() => {
-            console.log("Removido com sucesso")
-          }).catch((error) => {
-            console.log(error)
-          }) 
-        }
-      })
-      setGamesData(removes)
-    }
-  }
-  console.log(gamesData)
-  
   async function FilterCategory(category){
       const {data} = await axios.get(`https://neon-game-store-back.herokuapp.com/games?category=${category}`)
       setGamesData(data)
@@ -83,8 +47,7 @@ export default function Home() {
           <div className="actions">
             <Link to="/checkout">
               <NeonButton content="Comprar agora"/>
-            </Link>
-            
+            </Link> 
           </div>
         </GameSection>
       );
@@ -93,12 +56,15 @@ export default function Home() {
    
 
   return (
-   
-      <>
+    <>
       <Container>
         <Header className="TopBar">
-          <img className="Logo" src="https://i.im.ge/2022/07/11/uJykDK.png"></img>
-          <p>Olá, {user.name}</p>   
+          <img
+            className="Logo"
+            src="https://i.im.ge/2022/07/11/uJykDK.png"
+            alt="logo"
+          ></img>
+          <p>Olá, {user.name}</p>
         </Header>
             <Categories className="Category">
               <li onClick={() => FilterCategory("Todos")}>Todos</li>
@@ -122,35 +88,30 @@ const Header = styled.header`
   padding-right: 20px;
   background-color: #151515;
 
-  img{
-   
+  img {
     width: 80%;
-    
   }
 
-  p{
-    font-family: 'Goldman';
-    font-size:18px;
+  p {
+    font-family: "Goldman";
+    font-size: 18px;
   }
-
-`
+`;
 
 const Container = styled.main`
   height: auto;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   width: 100vw;
 `;
 
 const Categories = styled.ul`
- display: flex;
- justify-content: space-evenly;
- align-items: center;
- height:40px;
- background-color: rgba(61, 61, 61, 0.568);
-
-
-`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 40px;
+  background-color: rgba(61, 61, 61, 0.568);
+`;
 
 const GameSection = styled.div`
   display: flex;
@@ -158,26 +119,31 @@ const GameSection = styled.div`
   justify-content: space-between;
   padding-right: 20px;
 
+  .infos {
+    width: 100px;
+  }
 
-    .infos{
-      width: 100px;
-    }
+  .price {
+    color: yellow;
+    margin-top: 10px;
+  }
 
-    .price{
-      color:yellow;
-      margin-top: 10px;
-    }
+  &:last-child {
+    margin-bottom: 100px;
+  }
 
-    &:last-child{
-      margin-bottom:100px;
-    }
-
-    .removeCart{
-      background: linear-gradient(
+  .removeCart {
+    background: linear-gradient(
       180deg,
       rgba(255, 16, 16, 1) 0%,
       rgba(138, 0, 0, 1) 100%
     );
     color: white;
-    }
-`
+  }
+
+  .buttonBuyNow {
+    background-color: #11ffee00;
+    border: none;
+    color: #ffffff;
+  }
+`;

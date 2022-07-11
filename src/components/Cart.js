@@ -13,8 +13,7 @@ export default function Cart() {
   const { user } = useContext(UserContext);
   const { token } = user;
   const [productsCart, setProductsCart] = useState([]);
-  console.log(user);
-  console.log(token);
+
   useEffect(() => {
     async function GetProductsCart() {
       const config = {
@@ -90,11 +89,12 @@ export default function Cart() {
             <span>SALDO</span>
             <span>${total}</span>
           </Total>
+          <button onClick={()=>SubmitCheckout(total)}>
           <NeonButton
-            onClick={() => SubmitCheckout(total)}
             margin={"50px 0px 0px 0px"}
             content={"Continuar"}
           ></NeonButton>
+          </button>
         </>
       );
     }
@@ -130,6 +130,7 @@ export default function Cart() {
   }
 
   async function SubmitCheckout(total) {
+    console.log('submit')
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -190,6 +191,12 @@ const Container = styled.main`
     font-size: 24px;
     text-align: center;
     margin-bottom: 130px;
+  }
+
+  button{
+    background-color: #11ffee00;
+    border:none;
+    color:#FFFFFF;
   }
 `;
 

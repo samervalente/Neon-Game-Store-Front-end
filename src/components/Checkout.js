@@ -258,6 +258,12 @@ const Container = styled.main`
   padding: 15px;
   overflow-y: hidden;
 
+  button {
+    background-color: #11ffee00;
+    border: none;
+    color: #ffffff;
+  }
+
   .Collapsible {
     width: 100%;
     font-family: "Goldman", cursive;

@@ -33,7 +33,6 @@ export default function SignUp() {
         });
     }
   
-
   return (
     <Align>
       <div>
@@ -120,6 +119,7 @@ const Align = styled.section`
         border-radius: 0px 8px 0px 8px;
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #FF922D;
         box-shadow: inset 0 0 20px #FF922D, 0 0 20px #FF922D;
+        cursor:pointer;
     }
     p{
         color: #FF922D;
