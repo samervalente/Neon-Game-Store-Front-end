@@ -18,7 +18,7 @@ export default function Game() {
       },
     []
   );
-  console.log(game.platforms);
+  
 
     useEffect(() => {
     async function FetchData(){
@@ -27,10 +27,12 @@ export default function Game() {
     } 
     FetchData() 
     }, [id])
-    console.log(game.platforms)
-  
+
+     const isEmpty = Object.keys(game).length === 0 
+    
     return (
-        <Container>
+       <>
+          {!isEmpty ? <Container>
             <div className="section">
               <img className="imagesolo" src={game.soloURL}/>
             </div>
@@ -45,13 +47,14 @@ export default function Game() {
                 <Link to="/checkout">
                   <button className="comprar">Compre Agora</button>
                 </Link>
-                <p className="price">R$ {game.price},00</p>
+                <p className="price">R$ {game.price.toFixed(2).replace(".",",")}</p>
               </div>
               <button>Adicionar ao carrinho</button>
             </div>
             
             <Footer />
-        </Container>
+        </Container>:  "Carregando..."}
+       </>
     )
 }
 

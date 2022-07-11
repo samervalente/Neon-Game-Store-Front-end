@@ -1,90 +1,60 @@
 /*Este é um arquivo temporário pois irá ser transformado em styled compoennts */
 
-.Container.Home{
-    background-color: #151515;
-    width: 100vw;
-    height:100vh; 
-}
-
-.TopBar{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 120px;
-}
-
-
-.Logo{
-    width: 350px;
-    height: 200px;
-  
-}
-
-.Category{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    width: 100% ;
-    color:white;
-    font-size:18px;
-}
-
-.Category li {
-    margin: 0px 5px;
-}
-
-.GamesSection{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;  
-}
-.gameSection{
+.gameImage{
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   
+    display: inline-block;
+    width: 167px;
+    height:205px;
 }
 
-.gameSection:nth-last-child(2), .gameSection:last-child{
-    margin-bottom: 120px;
-    
-}
 
 .gameSection .name{
     font-family: 'Goldman';
-    font-size:15px;
-    position:absolute;
-    bottom:100px;
-    left:60px;
-    width: 100px;
+    font-size:14px;
+    width: 130px;
 }
 
 .gameSection .price{
-   font-family: 'Goldman';
+    font-family: 'Goldman';
     font-size:14px;
-    position:absolute;
-    bottom:80px;
-    left:60px;
     color:#FBFF49;
+    margin-top:10px;
 }
 
-.gameImage{
-    width: 230px;
-    height:260px;
+.gameSection:last-child{
+    margin-bottom: 110px;
 }
 
-.addcart{
-    background-color: white;
-    width: 100px;
-    height: 30px;
+.actions{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    color: black;
-    box-shadow: 2px 3px  gray;
+    flex-direction: column;
 }
+
+.actions button{
+    margin: 10px 0px;
+    border-radius: 5px;
+    border:none;
+    font-size: xl;
+    height:30px;
+    font-family: "Inria Sans";
+}
+
+.actions a{
+    color:white;
+}
+
+.buynow{
+    background: linear-gradient(
+      180deg,
+      rgba(255, 16, 16, 1) 0%,
+      rgba(138, 0, 0, 1) 100%
+    );
+    color: white;
+    
+}
+
+
+
+
 
 
