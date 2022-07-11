@@ -6,7 +6,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { IoBagHandleOutline } from "react-icons/io5";
 import Collapsible from "react-collapsible";
-import { TailSpin } from "react-loader-spinner";
 import Footer from "../shared/Footer.js";
 
 export default function Checkout() {
