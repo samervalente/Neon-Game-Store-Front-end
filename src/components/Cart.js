@@ -11,9 +11,10 @@ import NeonButton from "../shared/NeonButton";
 export default function Cart() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { name, token } = user;
+  const { token } = user;
   const [productsCart, setProductsCart] = useState([]);
-
+  console.log(user);
+  console.log(token);
   useEffect(() => {
     async function GetProductsCart() {
       const config = {
@@ -24,7 +25,8 @@ export default function Cart() {
 
       try {
         const { data } = await axios.get(
-          "https://neon-game-store-back.herokuapp.com/cart"
+          "https://neon-game-store-back.herokuapp.com/cart",
+          config
         );
 
         setProductsCart(data);
