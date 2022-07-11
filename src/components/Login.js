@@ -14,15 +14,21 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-    function signIn() {
-        const promisse = axios.post("https://neon-game-store-back.herokuapp.com/login", body);
-        promisse.then(response => {
-            setUser(response.data)
-            navigate('/home');
-        })
-            .catch(erro => { alert('bad request') });
-    }
-    console.log(user)
+  function signIn() {
+    const promisse = axios.post(
+      "https://neon-game-store-back.herokuapp.com/login",
+      body
+    );
+    promisse
+      .then((response) => {
+        setUser(response.data);
+        navigate("/home");
+      })
+      .catch((erro) => {
+        alert("bad request");
+      });
+  }
+  console.log(user);
 
   return (
     <Align>
@@ -93,6 +99,7 @@ const Align = styled.section`
     border-radius: 0px 8px 0px 8px;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) #ff922d;
     box-shadow: inset 0 0 20px #ff922d, 0 0 20px #ff922d;
+    cursor: pointer;
   }
   p {
     color: #ff922d;

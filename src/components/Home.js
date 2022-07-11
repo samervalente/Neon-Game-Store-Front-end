@@ -135,7 +135,7 @@ export default function Home() {
           <p className="price">R$ {game.price.toFixed(2).replace(".", ",")}</p>
         </div>
         <div className="actions">
-          <button onClick={() => buyNow(game._id)}>
+          <button className="buttonBuyNow" onClick={() => buyNow(game._id)}>
             <NeonButton content="Comprar agora" />
           </button>
           {game.inCart ? (
@@ -238,5 +238,11 @@ const GameSection = styled.div`
       rgba(138, 0, 0, 1) 100%
     );
     color: white;
+  }
+
+  .buttonBuyNow {
+    background-color: #11ffee00;
+    border: none;
+    color: #ffffff;
   }
 `;
