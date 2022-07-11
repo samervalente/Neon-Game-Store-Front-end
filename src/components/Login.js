@@ -22,7 +22,7 @@ export default function Login() {
         })
             .catch(erro => { alert('bad request') });
     }
-
+    console.log(user)
 
     return (
         <Align>

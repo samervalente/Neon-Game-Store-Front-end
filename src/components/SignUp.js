@@ -1,22 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { useState } from "react";
-import Logo from '../assets/images/Logo2.png';
+import Logo from "../assets/images/Logo2.png";
 import axios from "axios";
 
-export default function SignUp(){
+export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirm] = useState("");
+  const navigate = useNavigate();
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword , setConfirm] = useState('');
-    const navigate = useNavigate();
-
+    
     function register(){
         const newUser = {
-            email: email,
-            name: name,
-            password: password
+            email,
+            name,
+            password
         }
         if(password !== confirmPassword){
             alert("CONFIRME SUA SENHA CORRETAMENTE");
@@ -32,21 +32,46 @@ export default function SignUp(){
             alert('TRY AGAIN');
         });
     }
+  
 
-    return(
-        <Align>
-            <div>
-                <div><img src={Logo} alt="neon-games" /></div>
-                <h1>Faça parte da nossa comunidade</h1>
-                <input placeholder=' nome' type='text' value={name} onChange={e => setName(e.target.value)}/>
-                <input placeholder=' email' type='email' value={email} onChange={e => setEmail(e.target.value)}/>
-                <input placeholder=' senha' type='password' value={password} onChange={e => setPassword(e.target.value)}/>
-                <input placeholder=' confirme sua senha' type='password' value={confirmPassword} onChange={e => setConfirm(e.target.value)}/>
-                <button onClick={register}>Entrar</button>
-                <Link to='/'><p>Ja tem uma conta? Faça o login aqui</p></Link>
-            </div>
-        </Align>
-    )
+  return (
+    <Align>
+      <div>
+        <div>
+          <img src={Logo} alt="neon-games" />
+        </div>
+        <h1>Faça parte da nossa comunidade</h1>
+        <input
+          placeholder=" nome"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          placeholder=" email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          placeholder=" senha"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          placeholder=" confirme sua senha"
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirm(e.target.value)}
+        />
+        <button onClick={register}>Entrar</button>
+        <Link to="/">
+          <p>Ja tem uma conta? Faça o login aqui</p>
+        </Link>
+      </div>
+    </Align>
+  );
 }
 const Align = styled.section`
     width: 100%;
