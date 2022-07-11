@@ -90,6 +90,7 @@ const Header = styled.header`
 
   img {
     width: 80%;
+    
   }
 
   p {
@@ -118,6 +119,10 @@ const GameSection = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-right: 20px;
+
+  img{
+    cursor: pointer;
+  }
 
   .infos {
     width: 100px;
