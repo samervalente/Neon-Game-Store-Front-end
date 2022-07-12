@@ -5,7 +5,8 @@
 
 <a href="https://im.ge/i/uGyolh"><img width="500px" src="https://i.im.ge/2022/07/12/uGyolh.png" alt="uGyolh.png" border="0"></a>
 
-## Languages, frameworks and database
+## Language, framework, runtime and database
+* JavaScript
 * React
 * Node JS
 * Mongodb
